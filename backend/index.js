@@ -1,9 +1,8 @@
-const http = require("http");
-const dotenv = require("dotenv");
-dotenv.config({path: ".env"});
-const otherPort = process.env.PORT;
-const server = http.createServer ((req,res) => {
-    res.end("coucou cest moi");
-});
+const http = require('http');
+const app = require('./app');
+const dotenv = require('dotenv');
+dotenv.config({path: '.env'})
+app.set('port', process.env.PORT);
+const server = http.createServer(app);
 
-server.listen(otherPort || 3000);
+server.listen(process.env.PORT);
