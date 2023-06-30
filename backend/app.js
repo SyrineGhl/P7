@@ -2,7 +2,8 @@ const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require('dotenv');
 dotenv.config({path: '.env.local'})
-const User = require("./models/User");
+const userController = require('./controllers/userController');
+
 
 // Connexion à MongoDB
 mongoose
@@ -25,15 +26,8 @@ app.use((req, res, next) => {
   next();
 })
 app.use(express.json());
+
 // Routes
-app.post("/api/auth/signup", (req, res) => {
-  const user = new User({
-    email: req.body.email,
-    password: req.body.password
-  })
-  user.save()
-  .then(()=>res.status(200).json({message:'success'}))
-  .catch((error)=>res.status(400).json({message:'error with post sign up : '+error}))
-});
+app.post("/api/auth/signup", userController.createUser);
 
 module.exports = app;
