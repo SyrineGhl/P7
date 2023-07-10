@@ -23,16 +23,30 @@ exports.getAllBook = (req, res) => {
   .then (books => res.status(200).json(books))
   .catch(error => res.status(400).json({ message: 'Une erreur est survenue lors de la récupération des livres.', error }));
 }
-exports.getOneBook = (req, res, next) => {
+exports.getOneBook = (req, res) => {
   // Je récupère un livre avec l'id passé dans l'url
   Book.findOne({ _id: req.params.id })
   .then(book => res.status(200).json(book))
-  .catch(error => res.status(403).json({ error }));
+  .catch(error => res.status(500).json({ error }));
 };
-exports.getBestBooks = (req, res, next) => {
+exports.getBestBooks = (req, res) => {
   Book.find()
       .sort({ averageRating: -1 })
-      .limit(3) // Limite les résultats aux 3 premiers livres
-      .then(books => res.status(200).json(books))
-      .catch(error => res.status(400).json({ error })); 
+      .limit(3) 
+         .then(books => res.status(200).json(books))
+      .catch(error => 
+        res.status(500).json({ message: 'Une erreur est survenue lors de la récupération des meilleurs livres.', error })
+      );   
 };
+
+exports.updateOneBook = (req,res) => {
+  console.log('update');
+}
+
+exports.deleteOneBook = (req,res) => {
+  console.log('delete');
+}
+
+exports.addRatingBook = (req,res) => {
+  console.log("Route : /api/books/:id/rating ajout d'une evalution");
+}
