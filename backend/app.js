@@ -43,7 +43,7 @@ app.post('/api/books', auth, multer, bookController.createBook);
 app.get('/api/books', bookController.getAllBook);
 app.get('/api/books/bestrating', bookController.getBestBooks);
 app.get('/api/books/:id', bookController.getOneBook);
-app.put('/api/books/:id', bookController.updateOneBook);
+app.put('/api/books/:id', auth, multer, bookController.updateOneBook);
 app.delete('/api/books/:id', bookController.deleteOneBook);
 app.post('/api/books/:id/rating', bookController.addRatingBook);
 
