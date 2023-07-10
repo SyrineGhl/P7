@@ -40,7 +40,7 @@ app.use(express.json());
 app.post('/api/auth/signup', userController.createUser);
 app.post('/api/auth/login', userController.loginUser);
 app.post('/api/books', auth, multer, bookController.createBook);
-app.post('/api/books/:id/rating', auth, bookController.addRating);
+
 app.get('/api/books', bookController.getAllBook);
 app.get ('/api/books/:id', bookController.getOneBook);
 app.get('/api/books/bestrating', bookController.getBestBooks);
