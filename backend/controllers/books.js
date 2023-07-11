@@ -1,6 +1,7 @@
 const { json } = require("body-parser");
 const Book = require("../models/Book");
 const fs = require("fs");
+
 // Création d'un nouveau livre
 exports.createBook = (req, res) => {
   const bookObject = JSON.parse(req.body.book);
@@ -66,7 +67,6 @@ exports.updateOneBook = (req, res) => {
       };
   Book.findOne({ _id: req.params.id })
     .then((book) => {
-      console.log(book);
       if (book.userId != req.auth.userId) {
         return res.status(404).json({ message: "Livre non trouvé." });
       } 
@@ -110,4 +110,42 @@ exports.deleteOneBook = (req, res) => {
       });
 }
 
-exports.addRatingBook = (req, res) => {};
+exports.addRatingBook = (req, res) => {
+  const ratingObject = req.body;
+  ratingObject.grade = ratingObject.rating;
+  delete ratingObject.rating;
+
+  Book.findOneAndUpdate(
+    { _id: req.params.id },
+    { $push: { ratings: ratingObject } },
+    { new: true }
+  )
+    .then((updatedBook) => {
+      if (!updatedBook) {
+        return res.status(404).json({ message: "Livre inconnu" });
+      }
+
+      // Calculer la nouvelle moyenne des notes
+      const totalRatings = updatedBook.ratings.length;
+      const totalGrade = updatedBook.ratings.reduce(
+        (acc, rating) => acc + rating.grade,
+        0
+      );
+      const averageRating = totalGrade / totalRatings;
+
+      // Mettre à jour la moyenne des notes dans le livre
+      updatedBook.averageRating = averageRating;
+
+      // Sauvegarder les modifications du livre
+      updatedBook.save()
+        .then((savedBook) => {
+          res.status(200).json(savedBook);
+        })
+        .catch((error) => {
+          res.status(500).json({ message: "Erreur lors de la sauvegarde du livre", error });
+        });
+    })
+    .catch((error) => {
+      res.status(500).json({ message: "Erreur lors de la mise à jour du livre", error });
+    });
+};
