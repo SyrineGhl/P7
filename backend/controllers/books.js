@@ -5,10 +5,10 @@ const fs = require("fs");
 // Création d'un nouveau livre
 exports.createBook = (req, res) => {
   const bookObject = JSON.parse(req.body.book);
-
+console.log(req.file);
   const book = new Book({
     ...bookObject,
-    imageUrl: `${req.protocol}://${req.get("host")}/${req.file.path}`, // Construction de l'URL de l'image en utilisant le protocole et l'hôte de la requête
+    imageUrl: `${req.protocol}://${req.get("host")}/images/${req.file.path}`, // Construction de l'URL de l'image en utilisant le protocole et l'hôte de la requête
   });
 
   // Sauvegarde du livre dans la base de données
@@ -60,7 +60,7 @@ exports.updateOneBook = (req, res) => {
   const bookObject = req.file
     ? {
         ...JSON.parse(req.body.book),
-        imageUrl: `${req.protocol}://${req.get("host")}/${req.file.path}`,
+        imageUrl: `${req.protocol}://${req.get("host")}/images/${req.file.path}`,
       }
     : {
         ...req.body,
@@ -132,9 +132,11 @@ exports.addRatingBook = (req, res) => {
         0
       );
       const averageRating = totalGrade / totalRatings;
-
+      // Arrondir la moyenne à une décimale
+      const roundedRating = Math.round(averageRating);
+      
       // Mettre à jour la moyenne des notes dans le livre
-      updatedBook.averageRating = averageRating;
+      updatedBook.averageRating = roundedRating;
 
       // Sauvegarder les modifications du livre
       updatedBook.save()

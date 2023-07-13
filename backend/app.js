@@ -5,8 +5,10 @@ dotenv.config({ path: ".env.local" });
 const userController = require("./controllers/user");
 const bookController = require("./controllers/books");
 const auth = require ("./middleware/auth");
-const multer= require ("./middleware/multer-config");
+const { upload, optimizedImg } = require ("./middleware/multer-config");
 const path= require("path");
+
+// const verification = require('./middleware/');
 // Connexion à MongoDB
 mongoose
   .connect(
@@ -39,11 +41,11 @@ app.use(express.json());
 // Routes
 app.post('/api/auth/signup', userController.createUser);
 app.post('/api/auth/login', userController.loginUser);
-app.post('/api/books', auth, multer, bookController.createBook);
+app.post('/api/books', auth,upload, optimizedImg, bookController.createBook);
 app.get('/api/books', bookController.getAllBook);
 app.get('/api/books/bestrating', bookController.getBestBooks);
 app.get('/api/books/:id', bookController.getOneBook);
-app.put('/api/books/:id', auth, multer, bookController.updateOneBook);
+app.put('/api/books/:id', auth, upload, optimizedImg, bookController.updateOneBook);
 app.delete('/api/books/:id', bookController.deleteOneBook);
 app.post('/api/books/:id/rating', bookController.addRatingBook);
 
