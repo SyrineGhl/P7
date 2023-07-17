@@ -4,9 +4,9 @@ const dotenv = require("dotenv");
 dotenv.config({ path: ".env.local" });
 const userController = require("./controllers/user");
 const bookController = require("./controllers/books");
-const auth = require ("./middleware/auth");
-const { upload, optimizedImg } = require ("./middleware/multer-config");
-const path= require("path");
+const auth = require("./middleware/auth");
+const { upload, optimizedImg } = require("./middleware/multer-config");
+const path = require("path");
 
 // const verification = require('./middleware/');
 // Connexion à MongoDB
@@ -28,7 +28,7 @@ app.use((req, res, next) => {
   res.setHeader(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content, Accept, Content-Type, Authorization"
-  ); 
+  );
   res.setHeader(
     "Access-Control-Allow-Methods",
     "GET, POST, PUT, DELETE, PATCH, OPTIONS, HEAD"
@@ -39,17 +39,22 @@ app.use((req, res, next) => {
 app.use(express.json());
 
 // Routes
-app.post('/api/auth/signup', userController.createUser);
-app.post('/api/auth/login', userController.loginUser);
-app.post('/api/books', auth,upload, optimizedImg, bookController.createBook);
-app.get('/api/books', bookController.getAllBook);
-app.get('/api/books/bestrating', bookController.getBestBooks);
-app.get('/api/books/:id', bookController.getOneBook);
-app.put('/api/books/:id', auth, upload, optimizedImg, bookController.updateOneBook);
-app.delete('/api/books/:id', bookController.deleteOneBook);
-app.post('/api/books/:id/rating', bookController.addRatingBook);
+app.post("/api/auth/signup", userController.createUser);
+app.post("/api/auth/login", userController.loginUser);
+app.post("/api/books", auth, upload, optimizedImg, bookController.createBook);
+app.get("/api/books", bookController.getAllBook);
+app.get("/api/books/bestrating", bookController.getBestBooks);
+app.get("/api/books/:id", bookController.getOneBook);
+app.put(
+  "/api/books/:id",
+  auth,
+  upload,
+  optimizedImg,
+  bookController.updateOneBook
+);
+app.delete("/api/books/:id", bookController.deleteOneBook);
+app.post("/api/books/:id/rating", bookController.addRatingBook);
 
-app.use('/images', express.static(path.join(__dirname, 'images')));
-
+app.use("/images", express.static(path.join(__dirname, "images")));
 
 module.exports = app;
