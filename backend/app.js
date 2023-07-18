@@ -2,11 +2,15 @@ const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 dotenv.config({ path: ".env.local" });
+const path = require("path");
+
 const userController = require("./controllers/user");
 const bookController = require("./controllers/books");
-const auth = require("./middleware/auth");
+
 const { upload, optimizedImg } = require("./middleware/multer-config");
-const path = require("path");
+const auth = require("./middleware/auth");
+const validUser = require("./middleware/valid-user");
+
 
 // Connexion à MongoDB
 mongoose
@@ -38,7 +42,7 @@ app.use((req, res, next) => {
 app.use(express.json());
 
 // Routes
-app.post("/api/auth/signup", userController.createUser);
+app.post("/api/auth/signup", validUser.userValidation, userController.createUser);
 app.post("/api/auth/login", userController.loginUser);
 app.post("/api/books", auth, upload, optimizedImg, bookController.createBook);
 app.get("/api/books", bookController.getAllBook);

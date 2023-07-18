@@ -4,30 +4,14 @@ const User = require("../models/User");
 const dotenv = require("dotenv");
 dotenv.config({ path: ".env.local" });
 
-// Regex pour l'email
-const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-// Regex pour le mot de passe
-const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
 
 // Création d'un nouvel utilisateur
 exports.createUser = (req, res) => {
   const { email, password } = req.body;
-
-  // Validation de l'email
-  if (!emailRegex.test(email)) {
-    res.status(400).json({ message: "Email invalide" });
-    return;
-  }
-
-  // Validation du mot de passe
-  if (!passwordRegex.test(password)) {
-    res.status(400).json({ message: "Mot de passe invalide" });
-    return;
-  }
+  const bcryptSalt = 10;
 
   // Hachage du mot de passe fourni
-  bcrypt.hash(password, 10, (err, hashedPassword) => {
+  bcrypt.hash(password, bcryptSalt, (err, hashedPassword) => {
     if (err) {
       res
         .status(500)
@@ -54,19 +38,6 @@ exports.createUser = (req, res) => {
 // Connexion de l'utilisateur
 exports.loginUser = async (req, res) => {
   const { email, password } = req.body;
-
-  // Validation de l'email
-  if (!emailRegex.test(email)) {
-    res.status(400).json({ message: "Email invalide" });
-    return;
-  }
-
-  // Validation du mot de passe
-  if (!passwordRegex.test(password)) {
-    res.status(400).json({ message: "Mot de passe invalide" });
-    return;
-  }
-
   try {
     // Recherche de l'utilisateur dans la base de données par email
     const user = await User.findOne({ email });
