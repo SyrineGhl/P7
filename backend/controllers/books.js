@@ -7,7 +7,7 @@ exports.createBook = (req, res) => {
   console.log(req.file);
   const book = new Book({
     ...bookObject,
-    imageUrl: `${req.protocol}://${req.get("host")}/images/${req.file.path}`, 
+    imageUrl: `${req.protocol}://${req.get("host")}/images/${req.file.path}`,
   });
 
   book
@@ -107,23 +107,19 @@ exports.deleteOneBook = (req, res) => {
             res.status(200).json({ message: "Livre supprimé avec succès." });
           })
           .catch((err) => {
-            res
-              .status(500)
-              .json({
-                message:
-                  "Une erreur est survenue lors de la suppression du livre.",
-                err,
-              });
+            res.status(500).json({
+              message:
+                "Une erreur est survenue lors de la suppression du livre.",
+              err,
+            });
           });
       });
     })
     .catch((error) => {
-      res
-        .status(500)
-        .json({
-          message: "Une erreur est survenue lors de la suppression du livre.",
-          error,
-        });
+      res.status(500).json({
+        message: "Une erreur est survenue lors de la suppression du livre.",
+        error,
+      });
     });
 };
 

@@ -8,7 +8,6 @@ const auth = require("./middleware/auth");
 const { upload, optimizedImg } = require("./middleware/multer-config");
 const path = require("path");
 
-// const verification = require('./middleware/');
 // Connexion à MongoDB
 mongoose
   .connect(
@@ -45,13 +44,7 @@ app.post("/api/books", auth, upload, optimizedImg, bookController.createBook);
 app.get("/api/books", bookController.getAllBook);
 app.get("/api/books/bestrating", bookController.getBestBooks);
 app.get("/api/books/:id", bookController.getOneBook);
-app.put(
-  "/api/books/:id",
-  auth,
-  upload,
-  optimizedImg,
-  bookController.updateOneBook
-);
+app.put( "/api/books/:id", auth, upload, optimizedImg, bookController.updateOneBook);
 app.delete("/api/books/:id", bookController.deleteOneBook);
 app.post("/api/books/:id/rating", bookController.addRatingBook);
 
