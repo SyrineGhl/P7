@@ -16,7 +16,7 @@
  Informations globales :
 
 - Statut : 🟢 Terminé
-- Projet réalisé seul
+- Projet réalisé seule
 - Lien vers le [GitHub](https://github.com/SyrineGhl/P7.git)
 
 <h2 align="center"> Mise en situation </h2>
