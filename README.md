@@ -64,8 +64,8 @@ Kévin vous contacte pour vous proposer de travailler avec lui en mutualisant vo
 - Creer un fichier backend
 - Faire un npm init -y
 - Creer un fichier server.js dans le back
-- Installer express en écrivant npm Install express —save
-Je peux lancer mon serveur apres l’avoir écrit en faisant la cmd ==> node index (Toujours lancer le back avant le front )
+- Installer express en écrivant `npm Install express —save`
+- Je peux lancer mon serveur apres l’avoir écrit en faisant la cmd ==> node index (Toujours lancer le back avant le front )
 
 <h2 align="center"> Exigence de l’API </h2>
 
