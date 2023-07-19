@@ -12,11 +12,11 @@ const MIME_TYPES = {
 const storage = multer.memoryStorage({
   filename: (req, file, callback) => {
     const name = file.originalname.split(" ").join("_");
-    // Utilisez l'extension d'origine de l'image
+    // Utilise l'extension d'origine de l'image
     const ext = MIME_TYPES[file.mimetype];
     callback(null, name.split(".")[0] + Date.now() + "." + ext);
   },
-}); // Utilisez multer.memoryStorage() pour stocker l'image en mémoire
+}); // Utilise multer.memoryStorage() pour stocker l'image en mémoire
 
 // Créez l'objet Multer en utilisant la configuration de stockage pour une seule image
 const upload = multer({ storage }).single("image");
