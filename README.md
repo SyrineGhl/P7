@@ -28,10 +28,10 @@ Kévin vous contacte pour vous proposer de travailler avec lui en mutualisant vo
 <h2 align="center"> Objectif </h2>
 
 - Mise en place de l'application ✅
-- Créez un serveur Express simple ✅
+- Créer un serveur Express simple ✅
 - Créer une API RESTful ✅
-- Mettez en place un système d'authentification sur votre application ✅
-- Ajoutez une gestion des fichiers utilisateur sur l'application ✅
+- Metter en place un système d'authentification sur votre application ✅
+- Ajouter une gestion des fichiers utilisateur sur l'application ✅
 - Ajouter la gestion de l'ajout d'une notation d'un livre ✅
 - Ajouter la gestion du calcul de la note moyenne d'un livre ✅
 
@@ -66,13 +66,13 @@ Kévin vous contacte pour vous proposer de travailler avec lui en mutualisant vo
 
 - Installer [Visual Studio Code](https://code.visualstudio.com/).
 - Avoir un terminal en bash.
-- Crée un dépôt GitHub.
+- Créer un dépôt GitHub.
 - Récupérer la clé SSH du dépôt.
 - Récupérer le dépôt en local `git clone lien-ssh nom-du-projet`.
 - Entrer dans le dossier `cd nom-du-projet`.
 
 Pour le backend :
-  - Crée un dossier backend `mkdir backend`
+  - Créer un dossier backend `mkdir backend`
   - Accéder au dossier backend `cd backend`
   - Initialiser les dependances `npm init`
   - Tout valider (ou possibilité de changer de nom de projet)
@@ -81,15 +81,16 @@ Pour le backend :
   - Le reste se fait manuellement
 
 Pour la base de donnée :
-  - Ce connecté sur [MongoDB Atlas](https://www.mongodb.com/atlas/database)
-  - Crée un projet sur MongoDB Atlas
-  - Crée une base de donnée : Database > Create
-  - Crée un cluster pour définir une route pour la base de donnée :
+  - Se connecté sur [MongoDB Atlas](https://www.mongodb.com/atlas/database)
+  - Créer un projet sur MongoDB Atlas
+  - Créer une base de donnée : Database > Create
+  - Créer un cluster pour définir une route pour la base de donnée :
     - Connect > Connect to your application > Drivers > Add your connection string into your application code
   - Changer l'uri du cluster en ajoutant le nom de la base de donnée `mongodb+srv://<userDB>:<passwordDB>@<clusterDB>.mongodb.net/?retryWrites=true&w=majority`
   - Data access : définir un utilisateur avec les droits d'écriture et de lecture
 
 Pour le frontend :
+
   - Ouvrir un nouveau terminal
   - Accéder au dossier frontend `cd frontend`
   - Installer les dépendances `npm i`
