@@ -59,6 +59,14 @@ Kévin vous contacte pour vous proposer de travailler avec lui en mutualisant vo
 - Faire la commande `npm i mongoDB`.
 - Recuperer ce code afin d'interagir avec la base de donnée puis le coller dans l'app.js `mongodb+srv://<userDB>:<passwordDB>@<cluster>.mongodb.net/?retryWrites=true&w=majority`.
 
+<h3 align="center"> Creation du backend </h3>
+
+- Creer un fichier backend
+- Faire un npm init -y
+- Creer un fichier server.js dans le back
+- Installer express en écrivant npm Install express —save
+Je peux lancer mon serveur apres l’avoir écrit en faisant la cmd ==> node index (Toujours lancer le back avant le front )
+
 <h2 align="center"> Exigence de l’API </h2>
 
 Ce document détaille les besoins de l’API requis pour le bon fonctionnement du front-end.
