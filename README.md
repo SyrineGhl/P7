@@ -59,13 +59,43 @@ Kévin vous contacte pour vous proposer de travailler avec lui en mutualisant vo
 - Faire la commande `npm i mongoDB`.
 - Recuperer ce code afin d'interagir avec la base de donnée puis le coller dans l'app.js `mongodb+srv://<userDB>:<passwordDB>@<cluster>.mongodb.net/?retryWrites=true&w=majority`.
 
-<h3 align="center"> Creation du backend </h3>
 
-- Creer un fichier backend
-- Faire un npm init -y
-- Creer un fichier server.js dans le back
-- Installer express en écrivant `npm Install express —save`
-- Je peux lancer mon serveur apres l’avoir écrit en faisant la cmd ==> node index (Toujours lancer le back avant le front )
+<h2 align="center">Instruction d'installation et d'utilisation </h2>
+
+<h3>Installation</h3>
+
+- Installer [Visual Studio Code](https://code.visualstudio.com/).
+- Avoir un terminal en bash.
+- Crée un dépôt GitHub.
+- Récupérer la clé SSH du dépôt.
+- Récupérer le dépôt en local `git clone lien-ssh nom-du-projet`.
+- Entrer dans le dossier `cd nom-du-projet`.
+
+Pour le backend :
+  - Crée un dossier backend `mkdir backend`
+  - Accéder au dossier backend `cd backend`
+  - Initialiser les dependances `npm init`
+  - Tout valider (ou possibilité de changer de nom de projet)
+  - Faire un .gitignore et y écrire node_module voir récupérer dans le frontend le contenu du .gitignore
+  - Créer le fichier JS correspondant au package.json (ex: index.js)
+  - Le reste se fait manuellement
+
+Pour la base de donnée :
+  - Ce connecté sur [MongoDB Atlas](https://www.mongodb.com/atlas/database)
+  - Crée un projet sur MongoDB Atlas
+  - Crée une base de donnée : Database > Create
+  - Crée un cluster pour définir une route pour la base de donnée :
+    - Connect > Connect to your application > Drivers > Add your connection string into your application code
+  - Changer l'uri du cluster en ajoutant le nom de la base de donnée `mongodb+srv://<userDB>:<passwordDB>@<clusterDB>.mongodb.net/?retryWrites=true&w=majority`
+  - Data access : définir un utilisateur avec les droits d'écriture et de lecture
+
+Pour le frontend :
+  - Ouvrir un nouveau terminal
+  - Accéder au dossier frontend `cd frontend`
+  - Installer les dépendances `npm i`
+ *⚠ Toujours lancer le serveur backend avant le frontend pour éviter les erreurs de récupération de donnée.*
+  - Lancer le serveur front `npm start`
+
 
 <h2 align="center"> Exigence de l’API </h2>
 
