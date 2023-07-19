@@ -81,7 +81,7 @@ Pour le backend :
   - Le reste se fait manuellement
 
 Pour la base de donnée :
-  - Se connecté sur [MongoDB Atlas](https://www.mongodb.com/atlas/database)
+  - Se connecter sur [MongoDB Atlas](https://www.mongodb.com/atlas/database)
   - Créer un projet sur MongoDB Atlas
   - Créer une base de donnée : Database > Create
   - Créer un cluster pour définir une route pour la base de donnée :
